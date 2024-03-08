@@ -1,10 +1,15 @@
-# EXPERIMENT-NO--04-Distance measurement using Ultrasonic sensor
- ###  DATE: 
+ EXPERIMENT-NO--04-Distance measurement using Ultrasonic sensor
 
-###  NAME: 
-###  ROLL NO :
-###  DEPARTMENT:
-## AIM: 
+ ###  DATE: 08/02/2024
+
+###  NAME:PREMJI
+
+###  ROLL NO :212221043004
+
+###  DEPARTMENT:COMPUTER SCIENCE ENGINERRING
+
+## AIM:
+
 To interface an ultrasonic pair and measure the distance in centimeters , calculate the error
  
 ### COMPONENTS REQUIRED:
@@ -60,6 +65,49 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 
 ### PROGRAM 
 ```
+int echopin=6;
+int trigpin=7;
+int red=8;
+int green=9;
+long duration;
+float distance;
+void setup()
+{
+  pinMode(echopin,INPUT);
+  pinMode(trigpin,OUTPUT);
+  pinMode(red,OUTPUT);
+  pinMode(green,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  digitalWrite(trigpin,LOW);
+  delay(10);
+  digitalWrite(trigpin,HIGH);
+  delay(10);
+  digitalWrite(trigpin,LOW);
+  duration=pulseIn(echopin,HIGH);
+  distance=duration*0.034/2;  //0.034=velocity of sound
+  Serial.print("distance=");
+  Serial.print(distance);
+  Serial.println("cms");
+  if(distance>50)
+  {
+    digitalWrite(green,HIGH);
+    delay(500);
+    digitalWrite(green,LOW);
+    delay(500);
+  }
+  else
+  {
+    digitalWrite(red,HIGH);
+    delay(500);
+    digitalWrite(red,LOW);
+    delay(500);
+  }
+}
+```
 
 
 
@@ -69,11 +117,10 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 
 
 
-
-`````````
 
 
 ### Distance vs measurement table 
+![Screenshot (44)](https://github.com/premjivip/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/143831886/39b74860-6f16-487e-bb45-37cd15229921)
 
 			
  
@@ -81,25 +128,30 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 			
 			
 
-![image](https://user-images.githubusercontent.com/36288975/190135379-52ebacd5-ccd5-460f-a4cd-4d0ad1d9b179.png)
-
 			
 			
 			
 			
 			
-			Average error = sum/ number of readings 
+			
  
 
+Figure 03 -ON Condition (distence>50,green
+
+![Screenshot (43)](https://github.com/premjivip/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/143831886/39160812-24cb-46ce-87cc-fd8977c05cce)
 
 
+Figure04:ON Condition(distence<50red)
+![Screenshot (43)](https://github.com/premjivip/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/143831886/1f9dbb22-2d4a-4545-b353-cd9d1c90ddfc)  
+### GRAPH
+![Screenshot (45)](https://github.com/premjivip/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/143831886/14fc7ad4-b0f9-4fd4-9eaa-21d57e44b848)
 
 
-
-
+SCEHMATIVE SIMULATION
+![Screenshot (42)](https://github.com/premjivip/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/143831886/d40936ad-e2e5-4091-bdf6-118675e9d304)
 
 ### RESULTS
-
+Ultrasonic sencor is interface with digital output and error is identified to be 0.454 cms
 
 
  
